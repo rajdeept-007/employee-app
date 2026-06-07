@@ -14,7 +14,7 @@ pipeline {
         }
         stage("Build Docker Image") {
             steps {
-                sh 'docker build -t employeeapp .'
+                sh '/usr/local/bin/docker build -t employeeapp .'
             }
         }
         stage("Docker Login") {
@@ -26,20 +26,20 @@ pipeline {
                         passwordVariable: 'DOCKER_PASS'
                     )
                 ]) {
-                    sh 'doker login -u %DOCKER_USER% -p %DOCKER_PASS%'
+                    sh '/usr/local/bin/docker login -u %DOCKER_USER% -p %DOCKER_PASS%'
                 }
             }
         }
         stage('Push Image') {
             steps{
-                sh 'docker tag employeeapp rajdeeptalukdar/employeeapp:v2'
-                sh 'docker push rajdeeptalukdar/employeeapp:v2'
+                sh '/usr/local/bin/docker tag employeeapp rajdeeptalukdar/employeeapp:v2'
+                sh '/usr/local/bin/docker push rajdeeptalukdar/employeeapp:v2'
             }
         }
         stage('Run Container') {
             steps{
-                sh 'docker rm -f employeecontainer || exit 0'
-                sh 'docker run --name employeecontainer employeeapp'
+                sh '/usr/local/bin/docker rm -f employeecontainer || exit 0'
+                sh '/usr/local/bin/docker run --name employeecontainer employeeapp'
             }
         }
         
