@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage("Checkout") {
             steps {
-                git branch: main,
+                git branch: 'main',
                 url: 'https://github.com/rajdeept-007/employee-app.git'
             }
         }
