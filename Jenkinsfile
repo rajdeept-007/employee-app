@@ -14,7 +14,7 @@ pipeline {
         }
         stage("Build Docker Image") {
             steps {
-                sh 'docker build -t employeeapp'
+                sh 'docker build -t employeeapp .'
             }
         }
         stage("Docker Login") {
